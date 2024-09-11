@@ -2,8 +2,7 @@
 
 ## Installation
 
-Official instructions:
-[rust-lang.org/tools/install](https://www.rust-lang.org/tools/install).
+Official instructions: [rust-lang.org/tools/install](https://www.rust-lang.org/tools/install).
 
 From [exercism](https://exercism.org/docs/tracks/rust/installation):
 
@@ -168,3 +167,32 @@ cargo run
 ```
 
 You can also run `hello_world.exe` manually in the terminal by typing `.\target\debug\hello_world`.
+
+## rust-analyzer
+
+### Bug: "rust-analyzer failed to discover workspace"
+
+Source:
+[stackoverflow.com](https://stackoverflow.com/questions/72062935/rust-analyzer-failed-to-discover-workspace-in-vscode)
+
+The rust-analyzer needs a `Cargo.toml` to detect the workspace.
+
+Solutions:
+
+1.  Add a `Cargo.toml` in root directory with
+
+    ```toml
+    [workspace]
+
+    members = [
+        "{{root_directory}}/{{directory}}",
+    ]
+    ```
+
+2.  Specify `rust-analyzer.linkedProjects` in VS Code.
+
+    ```json
+    "rust-analyzer.linkedProjects": [ "{absolute_path}/Cargo.toml" ]
+    ```
+
+3.  Open the rust project instead of the parent directory.
